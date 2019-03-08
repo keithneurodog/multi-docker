@@ -6,30 +6,30 @@ services:
 #  - docker build -t client-tests -f ./client/Dockerfile.dev ./client
 
 script:
-#  - docker run client-tests npm run test --
-#
-#after_success:
+  #  - docker run client-tests npm run test --
+  #
+  #after_success:
   - docker build -t keithneurodog/multi-client ./client
   - docker build -t keithneurodog/multi-nginx ./nginx
   - docker build -t keithneurodog/multi-server ./server
   - docker build -t keithneurodog/multi-worker ./worker
-# Log into docker cli (to push images to docker hub)
+  # Log into docker cli (to push images to docker hub)
   - echo $DOCKER_PASSWORD | docker login -u $DOCKER_ID --password-stdin
-# push images to docker hub
+  # push images to docker hub
   - docker push keithneurodog/multi-client
   - docker push keithneurodog/multi-nginx
   - docker push keithneurodog/multi-server
   - docker push keithneurodog/multi-worker
 
-#deploy:
-#  provider: elasticbeanstalk
-#  region:  "eu-west-1"
-#  app: "docker-react"
-#  env: "DockerReact-env"
-#  bucket_name: "elasticbeanstalk-eu-west-1-135540455723"
-#  bucket_path: "docker-react"
-#  on:
-#    branch: master
-#  access_key_id: $AWS_ACCESS_KEY
-#  secret_access_key:
-#    secure: "$AWS_SECRET_KEY"
+deploy:
+  provider: elasticbeanstalk
+  region:  "eu-west-1"
+  app: "multi-docker"
+  env: "MultiDocker-env"
+  bucket_name: "elasticbeanstalk-eu-west-1-135540455723"
+  bucket_path: "multi-docker"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
