@@ -16,7 +16,7 @@ script:
 # Log into docker cli (to push images to docker hub)
   - echo $DOCKER_ID
   - echo $DOCKER_PASSWORD
-  - echo $DOCKER_PASSWORD | docker login -u $DOCKER_ID --password-stdin
+  - sudo docker login -u $DOCKER_ID -p $DOCKER_PASSWORD
 # push images to docker hub
 #  - docker push keithneurodog/multi-client
 #  - docker push keithneurodog/multi-nginx
