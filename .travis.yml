@@ -14,7 +14,7 @@ script:
   - docker build -t keithneurodog/multi-server ./server
   - docker build -t keithneurodog/multi-worker ./worker
 # Log into docker cli (to push images to docker hub)
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker login -u "$DOCKER_ID" -p "$DOCKER_PASSWORD"
 # push images to docker hub
   - docker push keithneurodog/multi-client
   - docker push keithneurodog/multi-nginx
