@@ -46,6 +46,14 @@ app.get('/values/all', async(req, res) => {
 });
 
 app.get('/values/current', async(req, res) => {
+    console.log('connection id = ');
+    console.log(redisClient.connection_id);
+    console.log(redisClient.connection_options);
+    console.log(redisClient.connected);
+    console.log(redisClient.connect_timeout);
+    console.log(redisClient.connectionId);
+    console.log(keys.redisHost);
+    console.log(keys.redisPort);
     redisClient.hgetall('values', (err, values) => {
         res.send(values);
     });
