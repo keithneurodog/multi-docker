@@ -9,3 +9,27 @@ docker-compose up --build
 
 If you get some weird shitty errors from nginx, restart docker desktop and do another compose down & up 
 (you might then still have to restart nginx container)
+
+
+##Minikube commands
+####startup
+Note this guide was taken from [here](https://medium.com/@JockDaRock/minikube-on-windows-10-with-hyper-v-6ef0f4dc158c)
+1. Launch powershell with admin rights
+2. run:
+```
+minikube start --vm-driver hyperv --hyperv-virtual-switch "Primary Virtual Switch"
+```
+####shutdown
+```
+minikube ssh
+$ sudo poweroff 
+```
+Note that minikube stop does not work due to an issue [here](https://github.com/kubernetes/minikube/issues/2914)
+####Dashboard
+```
+minikube dashboard
+```
+####Use docker ps command within minikube
+```
+minikube docker-env | Invoke-Expression
+``` 
